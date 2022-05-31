@@ -7,21 +7,20 @@ from db import sqlite
 
 def main():
 
-    logging.basicConfig(level=os.environ.get("LOGLEVEL", "INFO"))
-    logging.info("<< Starting bank transaction collect >>")
     # LOAD ENV CONFIG
-
-    logging.info("Loading environment")
 
     load_dotenv()
 
-    try:
-        SID = os.getenv("NORDIGEN_SECRET_ID")
-        SKEY = os.getenv("NORDIGEN_SECRET_KEY")
-        DB_FILE = os.getenv("SQLITE_DB")
+    SID = os.getenv("NORDIGEN_SECRET_ID")
+    SKEY = os.getenv("NORDIGEN_SECRET_KEY")
+    DB_FILE = os.getenv("BANK_TRANSACTION_SQLITE_DB")
+    LOG_PATH = os.getenv("BANK_TRANSACTION_LOG_PATH")
 
-    except OSError:
-        logging.error("Could not load environmental variables")
+    # INIT lOGGING
+
+    logging.basicConfig(filename=LOG_PATH, level=logging.INFO, format='%(asctime)s %(message)s')
+
+    logging.info("<< Starting bank transaction collect >>")
 
     # INITIALIZE NORDIGEN SESSION
 

@@ -13,4 +13,7 @@ env.bak/
 venv.bak/
 
 # app specific
-*.db
+*.dbx
+
+# dev logs
+.log
