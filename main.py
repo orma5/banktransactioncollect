@@ -18,7 +18,8 @@ def main():
 
     # INIT lOGGING
 
-    logging.basicConfig(filename=LOG_PATH, level=logging.INFO, format='%(asctime)s %(message)s')
+    logging.basicConfig(filename=LOG_PATH,
+                        level=logging.INFO, format='%(asctime)s %(message)s')
 
     logging.info("<< Starting bank transaction collect >>")
 
