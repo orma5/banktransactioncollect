@@ -47,3 +47,15 @@ class sqliteHandler:
         self._cursor.execute("BEGIN TRANSACTION;")
         self._cursor.executemany(queryString, transactionList)
         self._cursor.execute("COMMIT;")
+
+    def getTransactionsForAccount(self, account_name):
+
+        queryString = """SELECT * from [transaction] WHERE account_name = ?;"""
+
+        valuesData = (account_name,)
+
+        self._cursor.execute(queryString, valuesData)
+
+        queryResult = self._cursor.fetchall()
+
+        return queryResult

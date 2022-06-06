@@ -2,7 +2,8 @@ import os
 import logging
 from dotenv import load_dotenv
 from api import nordigen
-from db import sqlite
+# from db import sqlite
+from db import mariadb
 
 
 def main():
@@ -13,8 +14,13 @@ def main():
 
     SID = os.getenv("NORDIGEN_SECRET_ID")
     SKEY = os.getenv("NORDIGEN_SECRET_KEY")
-    DB_FILE = os.getenv("BANK_TRANSACTION_SQLITE_DB")
+    # DB_FILE = os.getenv("BANK_TRANSACTION_SQLITE_DB")
     LOG_PATH = os.getenv("BANK_TRANSACTION_LOG_PATH")
+    DB_USER = os.getenv("MARIADB_USER")
+    DB_PASS = os.getenv("MARIADB_PASS")
+    DB_HOST = os.getenv("MARIADB_HOST")
+    DB_PORT = os.getenv("MARIADB_PORT")
+    DB_NAME = os.getenv("MARIADB_DB")
 
     # INIT lOGGING
 
@@ -34,7 +40,8 @@ def main():
 
     # INITIALIZE DB
     logging.info("Loading database")
-    db = sqlite.sqliteHandler(DB_FILE)
+    # db = sqlite.sqliteHandler(DB_FILE)
+    db = mariadb.mariadbHandler(DB_USER, DB_PASS, DB_HOST, int(DB_PORT), DB_NAME)
     logging.info("Database loaded")
 
     # GET ACCOUNTS IDs
