@@ -1,6 +1,6 @@
 FROM python:3.8-slim-buster
 
-RUN apt-get update && apt-get -y install cron
+RUN apt-get update && apt-get -y install cron gcc libmariadb-dev
 
 WORKDIR /banktransactioncollect
 
