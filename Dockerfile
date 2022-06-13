@@ -14,4 +14,6 @@ RUN chmod 0644 /etc/cron.d/crontab
 
 RUN /usr/bin/crontab /etc/cron.d/crontab
 
+RUN env >> /etc/environment
+
 CMD ["cron", "-f"]

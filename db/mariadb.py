@@ -43,7 +43,7 @@ class mariadbHandler:
     def insertTransactions(self, transactionList):
         print(transactionList)
         transactionTupleList = list(map(tuple, transactionList))
-        print(transactionTupleList)
+        # print(transactionTupleList)
         queryString = """INSERT IGNORE INTO transaction
         (transaction_id,booking_date,description,amount,period,year,month,account_name)
         VALUES(?,?,?,?,?,?,?,?); """
