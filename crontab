@@ -1,2 +1,1 @@
-0 10 * * * python3 /banktransactioncollect/main.py
-
+*/5 * * * python3 /banktransactioncollect/main.py >> /var/log/cron.log 2>&1
