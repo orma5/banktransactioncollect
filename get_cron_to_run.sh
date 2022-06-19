@@ -1,1 +1,0 @@
-printenv >> /etc/environment
