@@ -1,13 +1,19 @@
-name: This a workflow title
-on: [push] # When pushing to any branch then run this action
+name: Docker build and push
+on:
+  workflow_run:
+    workflows: ["Python package"]
+    types:
+      - completed
+
 # Env variable
 env:
   DOCKER_USER: ${{secrets.DOCKERHUB_USER}}
   DOCKER_PASSWORD: ${{secrets.DOCKERHUB_TOKEN}}
   REPO_NAME: ${{secrets.DOCKERHUB_REPO}}
+  
 jobs:
   push-image-to-docker-hub:  # job name
-    runs-on: ubuntu-latest  # runner name : (ubuntu latest version) 
+    runs-on: ubuntu-latest  # runner name : (ubuntu latest version)
     steps:
     - uses: actions/checkout@v2 # first action : checkout source code
     - name: docker login
