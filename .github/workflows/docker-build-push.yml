@@ -9,6 +9,7 @@ on:
 env:
   DOCKER_USER: ${{secrets.DOCKERHUB_USER}}
   DOCKER_PASSWORD: ${{secrets.DOCKERHUB_TOKEN}}
+  REPO_NAME: ${{secrets.DOCKERHUB_REPO}}
 
 jobs:
   push-image-to-docker-hub:  # job name
