@@ -1,1 +1,2 @@
-*/5 * * * python3 /banktransactioncollect/main.py
+0 10 * * * python3 /banktransactioncollect/main.py
+
