@@ -14,4 +14,6 @@ RUN chmod 0644 /etc/cron.d/crontab
 
 RUN /usr/bin/crontab /etc/cron.d/crontab
 
+RUN printenv | sed 's/^\(.*\)$/export \1/g' > /root/project_env.sh
+
 CMD ["cron", "-f"]

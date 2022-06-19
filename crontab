@@ -1,2 +1,2 @@
-*/5 * * * * root . /banktransactioncollect/get_cron_to_run.sh; python3 /banktransactioncollect/main.py >> /var/log/cron.log 2>&1
+*/5 * * * * root . /root/project_env.sh; /usr/local/bin/python3 /banktransactioncollect/main.py >> /var/log/cron.log 2>&1
 # Empty line as a must have for cron
