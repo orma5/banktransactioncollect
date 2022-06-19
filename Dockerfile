@@ -8,7 +8,9 @@ COPY . .
 
 RUN pip3 install -r requirements.txt
 
-RUN mv crontab /etc/cron.d/crontab
+COPY crontab /etc/cron.d/crontab
+
+RUN rm /banktransactioncollect/crontab
 
 RUN chmod 0644 /etc/cron.d/crontab
 
