@@ -35,13 +35,19 @@ def main():
     nc = nordigen.NordigenClient(SID, SKEY)
 
     logging.info("Generaing Token")
-    nc.generate_token()
-    logging.info("Token generated successfully")
+    try:
+        nc.generate_token()
+        logging.info("Token generated successfully")
+    except Exception as e:
+        logging.error(e)
 
     # INITIALIZE DB
     logging.info("Loading database")
-    # db = sqlite.sqliteHandler(DB_FILE)
-    db = mariadb.mariadbHandler(DB_USER, DB_PASS, DB_HOST, int(DB_PORT), DB_NAME)
+    db = mariadb.mariadbHandler(DB_USER,
+                                DB_PASS,
+                                DB_HOST,
+                                int(DB_PORT),
+                                DB_NAME)
     logging.info("Database loaded")
 
     # GET ACCOUNTS IDs
@@ -56,8 +62,12 @@ def main():
 
         logging.info("Processing account: \
          "+account_name+" with id:"+account_id)
+        try:
+            transactions = nc.getAllTransactionsForAccount(account_id)
+            logging.info("Received account transactions, will now update db")
 
-        transactions = nc.getAllTransactionsForAccount(account_id)
+        except Exception as e:
+            logging.error(e)
 
         transactionRecords = db.getTransactionCount(account_name)
 

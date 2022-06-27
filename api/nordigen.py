@@ -32,8 +32,13 @@ class NordigenClient:
         payload = {"secret_key": self.secret_key, "secret_id": self.secret_id}
 
         r = requests.post(url, payload, self._headers)
-        response = r.json()
+        reqStatus = r.status_code
 
+        if reqStatus != 200:
+            raise requests.ConnectionError("Expected status code 200, \
+                                            but got"+reqStatus+" : "+r.reason)
+
+        response = r.json()
         self.token = response["access"]
 
         return response
@@ -43,6 +48,12 @@ class NordigenClient:
         url = f"{self.base_url}/accounts/{bankAccountID}/transactions/"
 
         r = requests.get(url, headers=self._headers)
+        reqStatus = r.status_code
+
+        if reqStatus != 200:
+            raise requests.ConnectionError("Expected status code 200, \
+                                            but got"+reqStatus+" : "+r.reason)
+
         response = r.json()
 
         return response["transactions"]["booked"]
@@ -54,6 +65,12 @@ class NordigenClient:
         parameters = {"date_from": date_from, "date_to": date_to}
 
         r = requests.get(url, params=parameters, headers=self._headers)
+        reqStatus = r.status_code
+
+        if reqStatus != 200:
+            raise requests.ConnectionError("Expected status code 200, \
+                                            but got"+reqStatus+" : "+r.reason)
+
         response = r.json()
 
         return response["transactions"]["booked"]
