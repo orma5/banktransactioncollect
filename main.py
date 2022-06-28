@@ -105,10 +105,14 @@ def main():
             insertBatch.append(valuesData)
 
         # INSERT NEW RECORDS IN DB
-        db.insertTransactions(insertBatch)
+        if not insertBatch:
+            logging.info("No transactions to insert")
+        else:
+            db.insertTransactions(insertBatch)
 
-        delta = db.getTransactionCount(account_name) - transactionRecords
-        logging.info("Inserted "+str(delta)+" for account: "+account_name)
+            delta = db.getTransactionCount(account_name) - transactionRecords
+            logging.info("Inserted "+str(delta)+" for account: "+account_name)
+
     logging.info("<< Bank transaction collect complete >>")
 
 
