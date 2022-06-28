@@ -35,8 +35,8 @@ class NordigenClient:
         reqStatus = r.status_code
 
         if reqStatus != 200:
-            raise requests.ConnectionError("Expected status code 200, \
-                                            but got"+reqStatus+" : "+r.reason)
+            raise requests.ConnectionError("Expected status code 200 \
+            ,but got < "+str(reqStatus)+" > : "+r.reason)
 
         response = r.json()
         self.token = response["access"]
@@ -51,8 +51,8 @@ class NordigenClient:
         reqStatus = r.status_code
 
         if reqStatus != 200:
-            raise requests.ConnectionError("Expected status code 200, \
-                                            but got"+reqStatus+" : "+r.reason)
+            raise requests.ConnectionError("Expected status code 200 \
+            ,but got < "+str(reqStatus)+" > : "+r.reason)
 
         response = r.json()
 
@@ -68,8 +68,8 @@ class NordigenClient:
         reqStatus = r.status_code
 
         if reqStatus != 200:
-            raise requests.ConnectionError("Expected status code 200, \
-                                            but got"+reqStatus+" : "+r.reason)
+            raise requests.ConnectionError("Expected status code 200 \
+            ,but got < "+str(reqStatus)+" > : "+r.reason)
 
         response = r.json()
 
